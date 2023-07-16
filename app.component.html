@@ -1,0 +1,103 @@
+<div class="container-fluid" id="htmlData">
+  <div class="form-group">
+    <label>Cliente</label>
+    <input [(ngModel)]="cliente.nombre" type="text" class="form-control" aria-describedby="emailHelp"
+           placeholder="nombre de cliente">
+    <label>Direccion</label>
+    <input [(ngModel)]="cliente.direccion" type="text" class="form-control">
+    <label>Telefono</label>
+    <input [(ngModel)]="cliente.telefono" type="text" class="form-control" placeholder="numero de telefono">
+  </div>
+
+  <div class="row" *ngFor="let item of items;let i = index">
+    <div class="col-1">
+      <label>Borrar</label>
+
+    </div>
+    <div class="col-5">
+      <label>Detalle</label>
+    </div>
+    <div class="col-2">
+      <label>Cantidad</label>
+    </div>
+    <div class="col-2">
+      <label>V.Unitario</label>
+    </div>
+    <div class="col-2">
+      <label>Valor total</label>
+    </div>
+    <div class="col-1  justify-content-center" align="center">
+      <button class="btn-danger btn btn-sm" style="padding:0;width: 20px;height: 20px;font-size: 13px" (click)="borrar(i)">-</button>
+    </div>
+    <div class="col-5">
+      <input type="text" [(ngModel)]="items[i].detalle" class="form-control">
+    </div>
+    <div class="col-2">
+      <input type="number" [(ngModel)]="items[i].cantidad" (keyup)="sumarTotalItem(i)" class="form-control">
+    </div>
+    <div class="col-2">
+      <input type="number" [(ngModel)]="items[i].valorUnitario" (keyup)="sumarTotalItem(i)" class="form-control">
+    </div>
+    <div class="col-2">
+      <input disabled type="number" [(ngModel)]="items[i].valorTotal" class="form-control">
+    </div>
+
+  </div>
+
+  <button class="btn btn-primary btn-block mt-3" (click)="sumarItem()">añadir</button>
+
+  <div class="form-group mt-3">
+    <label>Total</label>
+    <input [(ngModel)]="total" type="text" class="form-control" placeholder="$">
+  </div>
+  <div>
+
+    <div class="row">
+      <div class="col-2 mt-3">
+        <label>Metodo de pago</label>
+      </div>
+
+      <div class="col-4 mt-3">
+        <div class="form-check">
+          <input [(ngModel)]="metodoDePago" class="form-check-input" type="radio" name="pago" value="transferencia">
+          <label class="form-check-label">
+            Transferencia
+          </label>
+        </div>
+      </div>
+      <div class="col-6 mt-3">
+        <div class="form-check">
+          <input [(ngModel)]="metodoDePago" class="form-check-input" type="radio" name="pago" value="efectivo">
+          <label class="form-check-label">
+            Efectivo
+          </label>
+        </div>
+      </div>
+      <div class="col-2 mt-3">
+        <label>Metodo de envio</label>
+      </div>
+      <div class="col-4 mt-3">
+        <div class="form-check">
+          <input [(ngModel)]="metodoDeEnvio" class="form-check-input" type="radio" name="envio" value="delivery">
+          <label class="form-check-label">
+            Delivery
+          </label>
+        </div>
+      </div>
+      <div class="col-6 mt-3">
+        <div class="form-check">
+          <input [(ngModel)]="metodoDeEnvio" class="form-check-input" type="radio" name="envio" value="starken">
+          <label class="form-check-label">
+            Starken
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn col col-lg-4 btn-success btn-block " (click)="downloadPdfMake()">Descargar</button>
+  </div>
+
+</div>
+
